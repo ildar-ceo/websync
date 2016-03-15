@@ -1,3 +1,9 @@
+.*\.pyc$
+~$
+settings.cfg
+.hg
+.hgignore
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

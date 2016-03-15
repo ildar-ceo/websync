@@ -1,0 +1,76 @@
+raise OSError("cannot read from timed out object")
+OSError: cannot read from timed out object
+
+
+Traceback (most recent call last):
+  File "/usr/local/bin/web", line 357, in <module>
+    uploadftp(project, host)
+  File "/usr/local/bin/web", line 301, in uploadftp
+    uploadDirectory(local_path, upload_path)
+  File "/usr/local/bin/web", line 298, in uploadDirectory
+    uploadDirectory(new_source, new_dest)
+  File "/usr/local/bin/web", line 298, in uploadDirectory
+    uploadDirectory(new_source, new_dest)
+  File "/usr/local/bin/web", line 288, in uploadDirectory
+    host.upload(new_source, new_dest)
+  File "/opt/python-3.4.3/lib/python3.4/site-packages/ftputil/host.py", line 451, in upload
+    conditional=False, callback=callback)
+  File "/opt/python-3.4.3/lib/python3.4/site-packages/ftputil/file_transfer.py", line 184, in copy_file
+    target_fobj = target_file.fobj()
+  File "/opt/python-3.4.3/lib/python3.4/site-packages/ftputil/file_transfer.py", line 94, in fobj
+    return self._host.open(self.name, self.mode)
+  File "/opt/python-3.4.3/lib/python3.4/site-packages/ftputil/host.py", line 203, in open
+    encoding=encoding, errors=errors, newline=newline)
+  File "/opt/python-3.4.3/lib/python3.4/site-packages/ftputil/file.py", line 92, in _open
+    self._conn = self._session.transfercmd(command)
+  File "/opt/python-3.4.3/lib/python3.4/site-packages/ftputil/file.py", line 92, in _open
+    self._conn = self._session.transfercmd(command)
+  File "/opt/python-3.4.3/lib/python3.4/ftplib.py", line 398, in transfercmd
+    return self.ntransfercmd(cmd, rest)[0]
+  File "/opt/python-3.4.3/lib/python3.4/ftplib.py", line 364, in ntransfercmd
+    resp = self.sendcmd(cmd)
+  File "/opt/python-3.4.3/lib/python3.4/ftplib.py", line 271, in sendcmd
+    self.putcmd(cmd)
+  File "/opt/python-3.4.3/lib/python3.4/ftplib.py", line 198, in putcmd
+    self.putline(line)
+  File "/opt/python-3.4.3/lib/python3.4/ftplib.py", line 193, in putline
+    self.sock.sendall(line.encode(self.encoding))
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 5-14: ordinal not in range(256)
+
+Traceback (most recent call last):
+  File "/home/www/web/lib.py", line 119, in listTree
+    await self.listTreeRecursive(ftp, path)
+  File "/home/www/web/lib.py", line 114, in listTreeRecursive
+    await self.listTreeRecursive(ftp, path)
+  File "/home/www/web/lib.py", line 114, in listTreeRecursive
+    await self.listTreeRecursive(ftp, path)
+  File "/home/www/web/lib.py", line 114, in listTreeRecursive
+    await self.listTreeRecursive(ftp, path)
+  File "/home/www/web/lib.py", line 114, in listTreeRecursive
+    await self.listTreeRecursive(ftp, path)
+  File "/home/www/web/lib.py", line 114, in listTreeRecursive
+    await self.listTreeRecursive(ftp, path)
+  File "/home/www/web/lib.py", line 97, in listTreeRecursive
+    for path, info in (await ftp.list(path, recursive=False)):
+  File "/home/www/web/libftp/client.py", line 578, in list
+    stream = yield from self.get_stream(command, "1xx")
+  File "/home/www/web/libftp/client.py", line 973, in get_stream
+    reader, writer = yield from self.get_passive_connection(conn_type)
+  File "/home/www/web/libftp/client.py", line 955, in get_passive_connection
+    write_memory=self.write_memory
+  File "/home/www/web/libftp/client.py", line 26, in open_connection
+    transport, _ = yield from create_connection(lambda: protocol, host, port)
+  File "/opt/python-3.5.0/lib/python3.5/asyncio/base_events.py", line 651, in create_connection
+    raise exceptions[0]
+  File "/opt/python-3.5.0/lib/python3.5/asyncio/base_events.py", line 638, in create_connection
+    yield from self.sock_connect(sock, address)
+  File "/opt/python-3.5.0/lib/python3.5/asyncio/futures.py", line 385, in __iter__
+    yield self  # This tells Task to wait for completion.
+  File "/opt/python-3.5.0/lib/python3.5/asyncio/tasks.py", line 288, in _wakeup
+    value = future.result()
+  File "/opt/python-3.5.0/lib/python3.5/asyncio/futures.py", line 274, in result
+    raise self._exception
+  File "/opt/python-3.5.0/lib/python3.5/asyncio/selector_events.py", line 436, in _sock_connect_cb
+    raise OSError(err, 'Connect call failed %s' % (address,))
+TimeoutError: [Errno 110] Connect call failed ('185.98.6.101', 62556)
+E
