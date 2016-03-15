@@ -1,6 +1,5 @@
 # Синхронизация файлов по FTP и SFTP
 
-## Пример использования:
 - websync downloadftp [project] [host] - download project from FTP
 - websync downloadsftp [project] [host] - download project from SFTP
 - websync uploadftp [project] [host] - upload project to FTP
