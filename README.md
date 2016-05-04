@@ -16,7 +16,7 @@
 ```
 cd /opt/
 git clone https://github.com/vistoyn/websync.git
-ln -sf /opt/websync/websync.py /usr/bin/websync
+ln -sf /opt/websync/websync.py /usr/local/bin/websync
 su www
 mkdir ~/.websync
 cp /opt/websync/settings.example.cfg ~/.websync/settings.cfg
