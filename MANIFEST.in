@@ -1,0 +1,5 @@
+recursive-include foruse *.py
+recursive-include examples *.py
+include README.md LICENSE.txt CHANGES.txt DESCRIPTION.rst
+global-exclude *.pyc
+global-exclude .git

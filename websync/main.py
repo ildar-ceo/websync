@@ -9,7 +9,7 @@
 #	web uploadftp [project] [host]
 #
 import os, json, re, sys, subprocess, yaml
-from dict import *
+from .dict import *
 
 def loadJsonFromString(data):
 	#data = re.sub(r'[\x00-\x20]+', ' ', data)
@@ -330,56 +330,55 @@ def showHosts(project):
 	
 	
 # Главная программа
-	
-command = xarr(sys.argv, 1)
-if command == 'downloadftp':
-	project = xarr(sys.argv, 2)
-	host = xarr(sys.argv, 3)
-	
-	if (project != None) and (host != None):
-		downloadftp(project, host)
-	elif (project != None)  and (host == None):
-		print ('Tools for manage web projects. Usage:')
-		print ('  websync downloadftp [project] [host]')
-		showHosts(project)		
-	else:
-		print ('Tools for manage web projects. Usage:')
-		print ('  websync downloadftp [project] [host]')
-		showProjects()	
-	
-elif command == 'uploadftp':
-	project = xarr(sys.argv, 2)
-	host = xarr(sys.argv, 3)
-	
-	if (project != None) and (host != None):
-		uploadftp(project, host)
-	elif (project != None)  and (host == None):
-		print ('Tools for manage web projects. Usage:')
-		print ('  websync uploadftp [project] [host]')
-		showHosts(project)		
-	else:
-		print ('Tools for manage web projects. Usage:')
-		print ('  websync uploadftp [project] [host]')
-		showProjects()	
-	
-elif command == 'showprojects':
-	showProjects()
-
-elif command == 'showhosts':
-	project = xarr(sys.argv, 2)
-	
-	if project != None:
-		showHosts(project)
+def main():
+	command = xarr(sys.argv, 1)
+	if command == 'downloadftp':
+		project = xarr(sys.argv, 2)
+		host = xarr(sys.argv, 3)
 		
-	else:
-		print ('Tools for manage web projects. Usage:')
-		print ('  websync showhosts [project] - show hosts')
-		projects = xarr(CFG,'projects',{},TypeObject)
-		print ('Projects: ')
-		for project in projects:
-			print ('  ' + project)
+		if (project != None) and (host != None):
+			downloadftp(project, host)
+		elif (project != None)  and (host == None):
+			print ('Tools for manage web projects. Usage:')
+			print ('  websync downloadftp [project] [host]')
+			showHosts(project)		
+		else:
+			print ('Tools for manage web projects. Usage:')
+			print ('  websync downloadftp [project] [host]')
+			showProjects()	
 		
-else:
-	outUsage()
-	
+	elif command == 'uploadftp':
+		project = xarr(sys.argv, 2)
+		host = xarr(sys.argv, 3)
+		
+		if (project != None) and (host != None):
+			uploadftp(project, host)
+		elif (project != None)  and (host == None):
+			print ('Tools for manage web projects. Usage:')
+			print ('  websync uploadftp [project] [host]')
+			showHosts(project)		
+		else:
+			print ('Tools for manage web projects. Usage:')
+			print ('  websync uploadftp [project] [host]')
+			showProjects()	
+		
+	elif command == 'showprojects':
+		showProjects()
 
+	elif command == 'showhosts':
+		project = xarr(sys.argv, 2)
+		
+		if project != None:
+			showHosts(project)
+			
+		else:
+			print ('Tools for manage web projects. Usage:')
+			print ('  websync showhosts [project] - show hosts')
+			projects = xarr(CFG,'projects',{},TypeObject)
+			print ('Projects: ')
+			for project in projects:
+				print ('  ' + project)
+			
+	else:
+		outUsage()
+#!enddef main

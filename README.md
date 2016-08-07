@@ -14,10 +14,28 @@
 
 ## Процесс установки
 ```
-cd /opt/
-git clone https://github.com/vistoyn/websync.git
-ln -sf /opt/websync/websync.py /usr/local/bin/websync
-su www
-mkdir ~/.websync
-cp /opt/websync/settings.example.cfg ~/.websync/settings.cfg
+sudo pypi3.5 install websync
+```
+
+## Конфиг
+
+```
+ftp:
+	test: 
+		host: test-host
+		port: 22
+		user: ftp
+		pass: 123
+projects:
+	testproject:
+		local_path: /www/testproject/
+		ftp:
+			test-host:
+				download: /www/testproject
+				upload: /www/testproject
+		exclude:
+			- ^.hg
+			- ^.git
+			- ^cache
+			- ^vendor
 ```

@@ -7,7 +7,7 @@ import os, json, re, sys, subprocess, time, traceback
 import asyncio, yaml
 #sys.path.insert(0, os.getcwd())
 import libftp as aioftp
-from dict import *
+from .dict import *
 
 def loadJsonFromString(data):
 	#data = re.sub(r'[\x00-\x20]+', ' ', data)
