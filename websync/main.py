@@ -8,8 +8,17 @@
 #	web downloadftp [project] [host]
 #	web uploadftp [project] [host]
 #
+import ftplib
 import os, json, re, sys, subprocess, yaml
 from .dict import *
+
+class MySession(ftplib.FTP):
+
+    def __init__(self, host, userid, password, port):
+        """Act like ftplib.FTP's constructor but connect to another port."""
+        ftplib.FTP.__init__(self)
+        self.connect(host, int(port))
+        self.login(userid, password)
 
 def loadJsonFromString(data):
 	#data = re.sub(r'[\x00-\x20]+', ' ', data)
@@ -59,7 +68,7 @@ def downloadftp(project, host):
 	ftp_params = xarr(ftp,host,None,TypeObject)
 	
 	ftp_host = xarr(ftp_params, 'host', None, TypeString)
-	ftp_port = xarr(ftp_params, 'port', '22', TypeString)
+	ftp_port = xarr(ftp_params, 'port', '21', TypeString)
 	ftp_user = xarr(ftp_params, 'user', None, TypeString)
 	ftp_pass = xarr(ftp_params, 'pass', None, TypeString)
 
@@ -89,7 +98,7 @@ def downloadftp(project, host):
 		import ftputil
 		
 		# Download some files from the login directory.
-		with ftputil.FTPHost(ftp_host, ftp_user, ftp_pass) as host:
+		with ftputil.FTPHost(ftp_host, ftp_user, ftp_pass, port=ftp_port, session_factory=MySession) as host:
 			
 			def downloadDirectory(source,dest):
 				try:
@@ -190,7 +199,7 @@ def uploadftp(project, host):
 	ftp_params = xarr(ftp,host,None,TypeObject)
 	
 	ftp_host = xarr(ftp_params, 'host', None, TypeString)
-	ftp_port = xarr(ftp_params, 'port', '22', TypeString)
+	ftp_port = xarr(ftp_params, 'port', '21', TypeString)
 	ftp_user = xarr(ftp_params, 'user', None, TypeString)
 	ftp_pass = xarr(ftp_params, 'pass', None, TypeString)
 
@@ -220,7 +229,7 @@ def uploadftp(project, host):
 		import ftputil, os
 		
 		# Download some files from the login directory.
-		with ftputil.FTPHost(ftp_host, ftp_user, ftp_pass) as host:	
+		with ftputil.FTPHost(ftp_host, ftp_user, ftp_pass, port=ftp_port, session_factory=MySession) as host:
 			
 			def uploadDirectory(source, dest):
 				try:
