@@ -9,6 +9,8 @@ sudo pip3 install dist/websync-0.1.zip - Установка пакета
 sudo pip3 uninstall websync - Удаление пакета
 python3 setup.py register - Зарегистрировать пакет в pypi
 python3 setup.py sdist upload - Залить на сервер
+twine upload dist/* - Новая команда залить в pypi
+
 
 Список классификации:
 https://pypi.python.org/pypi?%3Aaction=list_classifiers
